@@ -11,24 +11,12 @@ type IScheduleItem = {
 }
 
 const ScheduleItem = ({time, schedule}: IScheduleItem) => {
-    if (schedule.isCommonLesson === true || schedule.isCommonLesson === undefined){
-        return (
-            <Paper className={styles.task}>
-                <Time time={time}/>
-                <Lesson lesson={schedule.commonLesson}/>
-            </Paper>)
-    }
-    else {
-        let firstGroupLesson = schedule.firstGroupLesson
-        let secondGroupLesson = schedule.secondGroupLesson
-        return (
-            <Paper className={styles.task}>
-                <Time time={time}/>
-                <Lesson lesson={firstGroupLesson}/>
-                <Lesson lesson={secondGroupLesson}/>
-            </Paper>
-        )
-    }
-};
+    return (
+        <Paper className={styles.task}>
+            <Time time={time}/>
+            {schedule.lessons.map(lesson => (<Lesson lesson={lesson}/>))}
+        </Paper>
+    )
+}
 
 export default ScheduleItem;

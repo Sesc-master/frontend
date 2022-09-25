@@ -1,5 +1,5 @@
 import React from "react";
-import { ScheduleLesson } from "../../../../../modules/schedule/types/ScheduleLesson";
+import ScheduleLesson from "../../../../../modules/schedule/types/ScheduleLesson";
 import {useStore} from "effector-react";
 import {timetableStore} from "../../../../../modules/effector/TimetableStore";
 import styles from "../../Components.module.scss"
@@ -18,7 +18,9 @@ const Lesson = ({lesson}: ILesson) => {
                 <>
                     <div className={styles.stick}/>
                     <div className={styles.lesson}>
-                        <Typography fontSize="15px" fontWeight={"bold"}>{lesson?.subject}</Typography>
+                        <Typography fontSize="15px" fontWeight={"bold"}>{lesson?.subject}
+                            {lesson.isChanged ? <span style={{color: "rgb(240, 92, 68)"}}>*</span> : null}
+                        </Typography>
                         <Typography fontSize="12px">{isTeacher ? lesson?.group : lesson?.teacher.split(" ")[0]} {lesson?.auditory}</Typography>
                     </div>
                 </>

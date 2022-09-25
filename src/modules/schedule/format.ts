@@ -1,63 +1,48 @@
 import { Schedule } from "./types/Schedule";
-import { ScheduleLesson } from "./types/ScheduleLesson";
+import ScheduleLesson from "./types/ScheduleLesson";
 
-const maxLessons = 7;
+const maxLessons = 7, maxSubgroups = 2;
 
 export class TimetableElement {
-    firstGroupLesson: ScheduleLesson | undefined
-    secondGroupLesson: ScheduleLesson | undefined
-    commonLesson: ScheduleLesson | undefined
-    isCommonLesson: Boolean | undefined
+    lessons: Array<ScheduleLesson | undefined> = new Array<ScheduleLesson | undefined>();
 }
 
 export function format (schedule: Schedule) : Array<TimetableElement>{
-    let lessons = new Array<Array<ScheduleLesson>>(), changes = new Array<Array<ScheduleLesson>>();
-    for (let scheduleSlot = 0; scheduleSlot < maxLessons; scheduleSlot++) {
-        changes.push(new Array<ScheduleLesson>());
-        lessons.push(new Array<ScheduleLesson>());
-    }
-    schedule?.lessons?.forEach(lesson => lessons[lesson.number - 1].push(lesson));
-    schedule?.diffs?.forEach(lesson => changes[lesson.number - 1].push(lesson));
-
     let timetableItems = new Array<TimetableElement>()
 
-    for (let i = 0; i <= 6; i++){
-        timetableItems.push(new TimetableElement())
+    for (let i = 0; i < maxLessons; i++) {
+        timetableItems.push(new TimetableElement());
     }
 
-    schedule?.lessons?.forEach((element) => {
-        if (element === undefined) return;
-
+    schedule.lessons.forEach(element => {
         if (element.subgroup === 0) {
-            timetableItems[element.number - 1].isCommonLesson = true
-            timetableItems[element.number - 1].commonLesson = element
-        }
-        else if(element.subgroup === 1) {
-            timetableItems[element.number - 1].isCommonLesson = false
-            timetableItems[element.number - 1].firstGroupLesson = element
+            timetableItems[element.number - 1].lessons = [element];
         }
         else {
-            timetableItems[element.number - 1].isCommonLesson = false
-            timetableItems[element.number - 1].secondGroupLesson = element
+            if (timetableItems[element.number - 1].lessons.length != maxSubgroups) {
+                timetableItems[element.number - 1].lessons = new Array(maxSubgroups).fill(undefined);
+            }
+            timetableItems[element.number - 1].lessons[element.subgroup - 1] = element;
         }
-    })
+    });
 
-    schedule?.diffs?.forEach((element) => {
-        if (element === undefined) return;
+    schedule.diffs.forEach(element => {
+        element.isChanged = true;
 
         if (element.subgroup === 0) {
-            timetableItems[element.number - 1].isCommonLesson = true
-            timetableItems[element.number - 1].commonLesson = element
-        }
-        else if(element.subgroup === 1) {
-            timetableItems[element.number - 1].isCommonLesson = false
-            timetableItems[element.number - 1].firstGroupLesson = element
+            timetableItems[element.number - 1].lessons = [element];
         }
         else {
-            timetableItems[element.number - 1].isCommonLesson = false
-            timetableItems[element.number - 1].secondGroupLesson = element
+            if (timetableItems[element.number - 1].lessons.length != maxSubgroups) {
+                timetableItems[element.number - 1].lessons = new Array(maxSubgroups).fill(undefined);
+            }
+            timetableItems[element.number - 1].lessons[element.subgroup - 1] = element;
         }
-    })
+    });
 
-    return timetableItems
+    timetableItems.forEach(timetableItem => {
+       if (timetableItem.lessons.length == 0) timetableItem.lessons = [undefined];
+    });
+
+    return timetableItems;
 }

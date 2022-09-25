@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getFreeClassrooms} from "../../modules/schedule/api/Schedule"
+import getFreeClassrooms from "../../modules/schedule/api/getFreeClassrooms";
 import AuditoriesPerLesson from "./auditoriesPerLesson/AuditoriesPerLesson"
 import "./EmptyAuditories.scss";
 import {List, ListSubheader} from "@mui/material";

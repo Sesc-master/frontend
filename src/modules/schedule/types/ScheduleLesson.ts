@@ -1,10 +1,11 @@
-import BaseLesson from "./BaseLesson";
-
-export class ScheduleLesson extends BaseLesson {
-    uid: number;
+export default class ScheduleLesson {
+    subject: string;
+    teacher: string;
+    group: string;
     auditory: string;
     subgroup: number;
     number: number;
-    weekday: number;
-    date?: string;
-}
+    isChanged?: boolean;
+};
+
+export const scheduleLessonGraphQLFields = ["subject", "teacher", "group", "auditory", "subgroup", "number"];
