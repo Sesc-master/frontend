@@ -1,0 +1,54 @@
+$bodyColor: #191919;
+
+.content {
+    padding: 0.5em;
+}
+
+.end {
+    height: 4.5em;
+}
+
+@media screen and (max-width: 770px) {
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+    .navbar {
+        padding-bottom: 1em;
+        border-top-right-radius: 1em;
+        border-top-left-radius: 1em;
+    }
+
+    body {
+        background-color: $bodyColor;
+    }
+}
+
+@media screen and (min-width: 771px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        padding: 1px;
+    }
+     
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+     
+    ::-webkit-scrollbar-thumb {
+        background-color: #606060;
+        margin: 1px;
+    }
+
+    .panel {
+        padding: 0px;
+        justify-self: center;
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 700px;
+        border-radius: 8px;
+    }
+
+}
+
+

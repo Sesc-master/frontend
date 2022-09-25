@@ -1,0 +1,19 @@
+import React from 'react';
+import ScheduleItem from "./scheduleItem/ScheduleItem";
+import {lessonTimes} from "../../../modules/event/lessonTimes";
+import {TimetableElement} from "../../../modules/schedule/format";
+
+
+const DailySchedule = ({schedule} : {schedule: Array<TimetableElement>}) => {
+    return (
+        <>
+            {Array.from(schedule).map((el, index) => (
+                <div key={index}>
+                    <ScheduleItem schedule={el} time={lessonTimes[index]}/>
+                </div>)
+            )}
+        </>
+    )
+};
+
+export default DailySchedule;
