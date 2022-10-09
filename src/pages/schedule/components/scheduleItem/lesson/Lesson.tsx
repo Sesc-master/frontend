@@ -1,5 +1,5 @@
 import React from "react";
-import ScheduleLesson from "../../../../../modules/schedule/types/ScheduleLesson";
+import ScheduleLesson from "../../../../../modules/api/types/ScheduleLesson";
 import {useStore} from "effector-react";
 import {timetableStore} from "../../../../../modules/effector/TimetableStore";
 import styles from "../../Components.module.scss"

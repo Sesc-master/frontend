@@ -4,7 +4,7 @@ import {setModalView} from "../../../modules/effector/AppSettingsSrore";
 import {setTeacher, setIsTeacher} from "../../../modules/effector/TimetableStore";
 import Loading from "../../../components/loading/Loading";
 import {useLoadTimetable} from "../../../hooks/useLoadTimetable";
-import getTeachers from "../../../modules/schedule/api/getTeachers";
+import getNames from "../../../modules/api/getNames";
 
 const Teachers = () => {
     const [teachers, setTeachers] = useState<string []>([])
@@ -13,7 +13,7 @@ const Teachers = () => {
     useEffect(() => {
         setIsLoading(true)
 
-        getTeachers()
+        getNames("teacher")
             .then(teachers => {
                 setIsLoading(false);
                 setTeachers(teachers);

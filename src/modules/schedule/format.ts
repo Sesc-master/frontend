@@ -1,5 +1,5 @@
-import { Schedule } from "./types/Schedule";
-import ScheduleLesson from "./types/ScheduleLesson";
+import { Schedule } from "../api/types/Schedule";
+import ScheduleLesson from "../api/types/ScheduleLesson";
 
 const maxLessons = 7, maxSubgroups = 2;
 

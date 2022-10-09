@@ -1,11 +1,17 @@
-export default class ScheduleLesson {
-    subject: string;
-    teacher: string;
-    group: string;
-    auditory: string;
-    subgroup: number;
-    number: number;
-    isChanged?: boolean;
-};
+import Field from "../graphql/field";
 
-export const scheduleLessonGraphQLFields = ["subject", "teacher", "group", "auditory", "subgroup", "number"];
+export default class ScheduleLesson {
+    @Field()
+    subject: string;
+    @Field()
+    teacher: string;
+    @Field()
+    group: string;
+    @Field()
+    auditory: string;
+    @Field()
+    subgroup: number;
+    @Field()
+    number: number;
+    isChanged: boolean = false;
+};

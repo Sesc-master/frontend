@@ -1,4 +1,4 @@
-import getSchedule from "./api/getSchedule";
+import getSchedule from "../api/getSchedule";
 
 export async function getWeekSchedule(key: string, isTeacher?: boolean) {
     const type = isTeacher ? 'teacher' : 'group';
