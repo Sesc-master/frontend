@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import Week from "./week/Week";
 import {format} from "../../modules/schedule/format";
 import {setModalView} from "../../modules/effector/AppSettingsSrore";
@@ -7,11 +7,13 @@ import {useStore} from "effector-react";
 import {setDay, timetableStore,} from '../../modules/effector/TimetableStore';
 import Instruction from "./components/instruction/Instruction";
 import ScheduleLoader from "./components/scheduleLoader/ScheduleLoader";
-import Error from "./components/error/Error";
 import DailySchedule from "./components/DailySchedule";
 import Informer from "../../components/informer/Informer";
 import {getCurrentDay} from "./week/GetCurrentDay";
 import Select from "../../components/select/Select";
+import {IonRefresher, IonRefresherContent, IonContent, IonPage} from "@ionic/react";
+import {useLoadTimetable} from "../../hooks/useLoadTimetable";
+import { RefresherEventDetail } from '@ionic/core';
 
 const Schedule = () => {
     const {grade, weekSchedule, isTimetableLoading, isTeacher, teacher, day} = useStore(timetableStore);
@@ -21,26 +23,38 @@ const Schedule = () => {
         setDay(targetDay === 0 ? 0 : targetDay - 1);
     }, []);
 
+    const reload = useCallback(async (event: CustomEvent<RefresherEventDetail>) => {
+      await useLoadTimetable(grade, teacher, isTeacher)
+
+      event.detail.complete();
+    }, [grade, teacher, isTeacher])
+
     return (
-        <div className="content">
-            <Informer/>
-            <Select
+        <IonPage>
+          <IonContent>
+            <IonRefresher slot="fixed" onIonRefresh={reload}>
+              <IonRefresherContent
+                refreshingSpinner="lines"
+              >
+              </IonRefresherContent>
+            </IonRefresher>
+            <div className={'content'} style={{ paddingBottom: '60px' }}>
+              <Informer/>
+              <Select
                 placeholder={"Не выбран"}
                 value={isTeacher ? teacher : grade}
                 handler={() => {setModalView(Modal.Type)}} />
-            <Week />
-            <div>
-                {isTeacher && teacher === "" || !isTeacher && grade === "" ? (
-                    <Instruction />
-                ) : isTimetableLoading ? (
-                    <ScheduleLoader />
-                ) : weekSchedule[day] ? (
-                    <DailySchedule schedule={format(weekSchedule[day])}/>
-                ) : (
-                    <Error />
-                )}
+              <Week />
+              {(isTeacher && teacher === "" || !isTeacher && grade === "") ? (
+                <Instruction />
+              ) : weekSchedule[day] && !isTimetableLoading ? (
+                <DailySchedule schedule={format(weekSchedule[day])}/>
+              ) : (
+                <ScheduleLoader />
+              )}
             </div>
-        </div>
+          </IonContent>
+        </IonPage>
     );
 };
 

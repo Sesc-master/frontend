@@ -47,8 +47,8 @@ const SkippedLessons = () : JSX.Element => {
                         <circle className={styles.circle}></circle>
                         <h5 style={{margin: 0}}>- пропуски без освобождения</h5>
                     </div>
-                    {Array.from(absences?.keys())?.map((subject) => (
-                        <div className={styles.absence}>
+                    {Array.from(absences?.keys())?.map((subject, index) => (
+                        <div className={styles.absence} key={index}>
                             <div className={styles.subject}>{subject}</div>
                             <div className={styles.dates}>
                                 {absences.get(subject)?.map((absence : any) => {

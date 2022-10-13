@@ -8,10 +8,8 @@ const DailySchedule = ({schedule} : {schedule: Array<TimetableElement>}) => {
     return (
         <>
             {Array.from(schedule).map((el, index) => (
-                <div key={index}>
-                    <ScheduleItem schedule={el} time={lessonTimes[index]}/>
-                </div>)
-            )}
+                <ScheduleItem key={index} schedule={el} time={lessonTimes[index]}/>
+            ))}
         </>
     )
 };
