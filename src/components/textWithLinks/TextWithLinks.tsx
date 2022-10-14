@@ -30,7 +30,7 @@ const TextWithLinks = ({str} : {str: string}) : JSX.Element => {
             {linkify.find(str).length === 0 ? (
                 <Typography>{str}</Typography>
             ) : textArray.map((value, index) => (
-                <>
+                <div key={index}>
                     {value}
                     {index !== textArray.length - 1 && (
                         <button className={styles.link}
@@ -38,7 +38,7 @@ const TextWithLinks = ({str} : {str: string}) : JSX.Element => {
                             {getDomain(links[index]?.href)}
                         </button>
                     )}
-                </>)
+                </div>)
             )}
         </>
     )

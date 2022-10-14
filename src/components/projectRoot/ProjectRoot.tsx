@@ -1,6 +1,5 @@
 import React, {useEffect,} from "react";
 import Navbar from "../navbar/Navbar";
-import AppHeader from "../appHeader/AppHeader";
 import {BrowserRouter as Router} from 'react-router-dom'
 import {Modal} from "../../modules/Modal"
 import {setIsDiaryLoading,} from "../../modules/effector/DiaryStore";
@@ -52,7 +51,6 @@ const ProjectRoot = () => {
     return (
         <Router>
             <ThemeProvider theme={darkTheme}>
-                <AppHeader/>
                 <Navbar/>
                 <Box className="panel">
                     <ProjectRoutes />

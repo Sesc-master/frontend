@@ -1,5 +1,5 @@
 import {
-    setWeekSchedule, 
+    setWeekSchedule,
     setIsTimetableLoading,
     setIsError,
 } from '../modules/effector/TimetableStore'
@@ -19,7 +19,7 @@ export const useLoadTimetable = async (grade: string, teacher: string, isTeacher
         setWeekSchedule(weekSchedule)
 
         setIsTimetableLoading(false)
-    }catch {
+    } catch {
         setIsError(true)
         setIsTimetableLoading(false)
     }

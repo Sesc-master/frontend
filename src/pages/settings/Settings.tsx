@@ -17,12 +17,12 @@ const Settings = () => {
         localStorage.setItem(StorageKey.NavbarItems, JSON.stringify(list))
     }
 
-    const reorderItems = (from: number, to: number, items: NavbarItem[]) => {
-        const list = [...items];
-        list.splice(from, 1);
-        list.splice(to, 0, items[from]);
-        setItems(list);
-    };
+    // const reorderItems = (from: number, to: number, items: NavbarItem[]) => {
+    //     const list = [...items];
+    //     list.splice(from, 1);
+    //     list.splice(to, 0, items[from]);
+    //     setItems(list);
+    // };
 
     return (
         <>
@@ -37,6 +37,7 @@ const Settings = () => {
                 {navbarItems.map((navbarItem) => {
                     return (
                         <ListItemButton
+                            key={navbarItem.link}
                             disabled={navbarItem.link === Page.About}
                             onClick={() => {
                                 if (navbarItem.isActive && initialPage == navbarItem.link) setInitialPage(Page.About);
@@ -74,6 +75,7 @@ const Settings = () => {
                 {defaultItems.map((navbarItem) => {
                     return (
                         <ListItemButton
+                            key={navbarItem.link}
                             onClick={() => {
                                 setInitialPage(navbarItem.link)
                                 localStorage.setItem(StorageKey.InitialPage, navbarItem.link)

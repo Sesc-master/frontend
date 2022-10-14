@@ -13,26 +13,20 @@ const Lesson = ({lesson}: ILesson) => {
     const {isTeacher} = useStore(timetableStore);
 
     return (
-        <>
+        <div className={styles.lesson}>
             {lesson ? (
                 <>
-                    <div className={styles.stick}/>
-                    <div className={styles.lesson}>
-                        <Typography fontSize="15px" fontWeight={"bold"}>{lesson?.subject}
-                            {lesson.isChanged ? <span style={{color: "rgb(240, 92, 68)"}}>*</span> : null}
-                        </Typography>
-                        <Typography fontSize="12px">{isTeacher ? lesson?.group : lesson?.teacher.split(" ")[0]} {lesson?.auditory}</Typography>
-                    </div>
+                    <Typography fontSize="15px" fontWeight={"bold"}>{lesson?.subject}
+                        {lesson.isChanged ? <span style={{color: "rgb(240, 92, 68)"}}>*</span> : null}
+                    </Typography>
+                    <Typography fontSize="12px">{isTeacher ? lesson?.group : lesson?.teacher.split(" ")[0]} {lesson?.auditory}</Typography>
                 </>
             ) : (
                 <>
-                    <div className={styles.stick}/>
-                    <div className={styles.lesson}>
-                        <Typography >—</Typography>
-                    </div>
+                    <Typography >—</Typography>
                 </>
             )}
-        </>
+        </div>
     );
 }
 

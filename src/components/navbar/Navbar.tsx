@@ -38,6 +38,7 @@ const Navbar = () => {
                     if (navbarItem.isActive) {
                         return (
                             <BottomNavigationAction
+                                key={navbarItem?.link}
                                 value={navbarItem?.link}
                                 icon={<Icon iconName={navbarItem.iconName}/>}
                                 onClick={() => {
