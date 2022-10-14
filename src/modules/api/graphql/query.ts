@@ -15,8 +15,8 @@ export default async function query <T extends Object> (
         else return `${name}: ${value}`;
     }).join(',') + ')';
 
-    if (returns && graphQLTypes.has(returns.name)) {
-        query += '{' + graphQLTypes.get(returns.name)?.fields.map(field => field.serialize()).join('\n') + '}'
+    if (returns && graphQLTypes.has(returns)) {
+        query += '{' + graphQLTypes.get(returns)?.fields.map(field => field.serialize()).join('\n') + '}'
     }
 
     return fetch(endpoint, {
