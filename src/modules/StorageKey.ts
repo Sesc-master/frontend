@@ -1,7 +1,7 @@
 export enum StorageKey {
     Login = "loginData",
     Scheme = "scheme",
-    NavbarItems = "navbarItems",
+    NavbarItems = "navbarTabs",
     InitialPage = 'page',
     Timetable = 'timetable'
 }

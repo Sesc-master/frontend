@@ -16,6 +16,12 @@ export const defaultItems: NavbarItem[] = [
         isActive: true
     },
     {
+        link: Page.Diary,
+        iconName: IconName.Diary,
+        value: 'Дневник',
+        isActive: true
+    },
+    {
         link: Page.EmptyAuditories,
         iconName: IconName.EmptyRoom,
         value: 'Свободные кабинеты',

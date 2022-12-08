@@ -14,7 +14,7 @@ const ProjectRoutes = () => {
     return (
         <Routes>
             <Route path={Page.Timetable} element={<Schedule/>}/>
-            {/*<Route path={Page.Diary} element={isPWA() ? <Diary /> : <Installation />}/>*/}
+            <Route path={Page.Diary} element={isPWA() ? <Diary /> : <Installation />}/>
             <Route path={Page.About} element={<About />}/>
             <Route path={Page.EmptyAuditories} element={<EmptyAuditories />}/>
             <Route path={Page.Settings} element={<Settings />}/>
