@@ -1,5 +1,13 @@
 $bodyColor: #191919;
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    scrollbar-width: 0;
+}
+
 body {
     overflow: hidden;
     user-select: none;
@@ -10,7 +18,7 @@ body {
 }
 
 .end {
-    height: 4.5em;
+    height: 110px;
 }
 
 *::-webkit-scrollbar {

@@ -16,6 +16,7 @@ import SkippedLessons from "./skipedLessons/SkippedLessons";
 import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import {Grid} from "@mui/material";
 
 const DiaryPanel = {
     Journal: {
@@ -60,30 +61,32 @@ const Diary = () : JSX.Element => {
     }, [loginRequest])
 
     return (
-        <>	
+        <>
             {isDiaryLoading && <Loading />}
             {!isLogin && !isDiaryLoading && <Login setLoginRequest={setLoginRequest}/>}
             {isLogin && (
-                <Tabs
+              <Grid mb={1} borderRadius={'10px'} width={'100%'} display={'flex'} justifyContent={'center'} sx={{ backgroundColor: '#272727'}}>
+                  <Tabs
                     value={activePage.name}
-                    variant="fullWidth"
                     allowScrollButtonsMobile
-                    scrollButtons
+                    variant="scrollable"
+                    scrollButtons={true}
                     sx={{
                         [`& .${tabsClasses.scrollButtons}`]: {
                             '&.Mui-disabled': { opacity: 0.3 },
                         },
                     }}
-                >
-                    {Object.values(DiaryPanel).map((panel, id) =>
+                  >
+                      {Object.values(DiaryPanel).map((panel, id) =>
                         <Tab
-                            onClick={() => setActivePage(panel)}
-                            value={panel.name}
-                            key={id}
-                            label={panel.name}
+                          onClick={() => setActivePage(panel)}
+                          value={panel.name}
+                          key={id}
+                          label={panel.name}
                         />
-                    )}
-                </Tabs>
+                      )}
+                  </Tabs>
+              </Grid>
             )}
             {isLogin && !isDiaryLoading && activePage?.element}
             {isError &&
