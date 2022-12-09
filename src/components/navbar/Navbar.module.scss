@@ -6,10 +6,11 @@
     right: 0;
     bottom: 0;
     background: #272727 !important;
-    border-radius: 15px;
-    margin: 10px 5px;
-    height: 65px !important;
     overflow: hidden;
+  }
+
+  .iphone {
+    padding-bottom: 15px !important;
   }
 }
 
@@ -23,9 +24,5 @@
     margin-bottom: 1em;
     margin-top: 15px;
     background: #272727 !important;
-  }
-
-  .iphone {
-    padding-bottom: 0;
   }
 }

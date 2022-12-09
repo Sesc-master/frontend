@@ -4,7 +4,8 @@ import {
     DialogActions,
     DialogContent,
     Button,
-    SwipeableDrawer
+    SwipeableDrawer,
+    Grid
 } from '@mui/material';
 import {setModalView} from "../../modules/effector/AppSettingsSrore";
 import {Modal as ModalName} from "../../modules/Modal";
@@ -61,7 +62,9 @@ const ModalPage = ({children, name, isOpen, height, close} : IModalPage) => {
                     swipeAreaWidth={0}
                 >
                     <Puller />
-                    {children}
+                    <Grid height={'100%'} overflow={'scroll'}>
+                      {children}
+                    </Grid>
                 </SwipeableDrawer>
             ) : (
                 <Dialog
