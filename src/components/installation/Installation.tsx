@@ -13,26 +13,26 @@ import android3 from "../../assets/androidInstallation/android3.jpg"
 
 import styles from "./Installation.module.scss";
 import Typography from "@mui/material/Typography";
-import {List, ListSubheader, ListItem} from "@mui/material";
+import {List, ListItem} from "@mui/material";
 
 const Installation = () : JSX.Element => {
 
     const iosInstallation = (
         <>
             <ListItem className={styles.step}>
-                <Typography className='step'>
-                    1. Нажмите на 
+                <Typography fontWeight={'bold'}>
+                    1. Нажмите на
                 </Typography>
                 <img src={ios1}/>
             </ListItem>
             <ListItem className={styles.step}>
-                <Typography>
-                    2. Пролистайте вниз и нажмите на 
+                <Typography fontWeight={'bold'}>
+                    2. Пролистайте вниз и нажмите на
                 </Typography>
                 <img src={ios2}/>
             </ListItem>
             <ListItem className={styles.step}>
-                <Typography>
+                <Typography fontWeight={'bold'}>
                     3. Скачайте приложение
                 </Typography>
                 <img src={ios3}/>
@@ -43,19 +43,19 @@ const Installation = () : JSX.Element => {
     const androidInstallation = (
         <>
             <ListItem className={styles.step}>
-                <Typography>
-                    1. Нажмите на 
+                <Typography fontWeight={'bold'}>
+                    1. Нажмите на
                 </Typography>
                 <img height={"43px"} width={"43px"} src={android1}/>
             </ListItem>
             <ListItem className={styles.step}>
-                <Typography>
-                    2. Пролистайте вниз и нажмите на 
+                <Typography fontWeight={'bold'}>
+                    2. Пролистайте вниз и нажмите на
                 </Typography>
                 <img src={android2}/>
             </ListItem>
             <ListItem className={styles.step}>
-                <Typography >
+                <Typography fontWeight={'bold'}>
                     3. Скачайте приложение на android
                 </Typography>
                 <img src={android3}/>
@@ -65,7 +65,7 @@ const Installation = () : JSX.Element => {
 
     const desktopInstallation = (
         <ListItem className={styles.step}>
-            <Typography>
+            <Typography fontWeight={'bold'}>
                 1. В верхнем правом углу нажмите на кнопку установить
             </Typography>
             <img src={desktop}/>
@@ -74,29 +74,15 @@ const Installation = () : JSX.Element => {
 
     return(
         <section className="content">
-            <List subheader={
-                <ListSubheader>
-                    Дневник доступен только в приложении
-                </ListSubheader>}
-            >
-                <ListItem>
-                    <Typography>
-                        К сожалению, вы не можете пользоваться дневником напрямую из браузера,
-                        но он станет доступным, если вы установите наше приложение. Это сделано
-                        по требованию отдела компьютеризации СУНЦ УрФУ.
-                    </Typography>
-                </ListItem>
-            </List>
-            <List disablePadding subheader={
-                <ListSubheader>
-                    Установка
-                </ListSubheader>}
-            >
+            <Typography fontWeight={'bold'}>
+              Установите приложение
+            </Typography>
+            <List sx={{ background: 'transparent' }} disablePadding>
                 {isIOS && iosInstallation}
                 {isAndroid && androidInstallation}
                 {isDesktop && !isIOS && desktopInstallation}
             </List>
-            <Typography>
+            <Typography fontWeight={'bold'} pt={2}>
                 Рекомендуем для ios использовать safari, для всего остального - chrome
             </Typography>
         </section>

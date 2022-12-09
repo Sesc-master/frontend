@@ -7,7 +7,7 @@ import {useStore} from "effector-react"
 import styles from "./Journal.module.scss"
 import dateComparator from "../../../modules/scoleAPI/date/dateComparator";
 import Select from "../../../components/select/Select";
-import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {ToggleButton, ToggleButtonGroup, Grid} from "@mui/material";
 
 enum ISortingType {
     NewerToOlder = 1,
@@ -42,7 +42,8 @@ const Journal = () => {
                 handler={() => setModalView(Modal.Subjects)}
             />
             {tasks && (
-                <ToggleButtonGroup
+              <Grid pt={1} pb={2}>
+                  <ToggleButtonGroup
                     color="primary"
                     value={sortingType}
                     exclusive
@@ -52,10 +53,11 @@ const Journal = () => {
                     }}
                     defaultValue={sortingType}
                     fullWidth
-                >
-                    <ToggleButton value={ISortingType.NewerToOlder}>От новых к старым</ToggleButton>
-                    <ToggleButton value={ISortingType.OlderToNewer}>От старых к новым</ToggleButton>
-                </ToggleButtonGroup>
+                  >
+                      <ToggleButton value={ISortingType.NewerToOlder}>От новых к старым</ToggleButton>
+                      <ToggleButton value={ISortingType.OlderToNewer}>От старых к новым</ToggleButton>
+                  </ToggleButtonGroup>
+              </Grid>
             )}
             {tasks && Array.from(tasks)?.map((task: any, index) =>
             (<div className={styles.task} key={index}>

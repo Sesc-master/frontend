@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     Dialog,
     DialogActions,
@@ -14,43 +14,51 @@ import Puller from "./Puller";
 
 type IModalPage = {
     children: JSX.Element,
-    name: ModalName,
+    name?: ModalName,
+    isOpen?: boolean,
+    close?: () => any,
+    height?: string,
 }
 
-const ModalPage = ({children, name} : IModalPage) => {
+const ModalPage = ({children, name, isOpen, height, close} : IModalPage) => {
     const {modalView} = useStore(appSettingsStore);
     const width = document.documentElement.clientWidth;
-    const modalPage =
-        (name: ModalName | "") =>
-            (event: React.KeyboardEvent | React.MouseEvent) => {
-                if (
-                    event &&
-                    event.type === 'keydown' &&
-                    ((event as React.KeyboardEvent).key === 'Tab' ||
-                        (event as React.KeyboardEvent).key === 'Shift')
-                ) {
-                    return;
-                }
+    const modalPage = (name?: ModalName | "") => {
+      return (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (event?.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift') || name === undefined) {
+          return;
+        }
 
-                setModalView(name);
-            };
+        if (name === '' && close) {
+          close()
+        }
+
+        setModalView(name);
+      };
+    }
+
+    const open = useMemo<boolean>(() => {
+      return Boolean(modalView === name || isOpen)
+    }, [modalView, name, isOpen])
 
     return (
         <>
             {width <= 770 ? (
                 <SwipeableDrawer
                     anchor={"bottom"}
-                    open={modalView === name}
+                    open={open}
                     onClose={modalPage("")}
                     onOpen={modalPage(name)}
                     disableSwipeToOpen={true}
                     sx={{'& .MuiDrawer-paper':
                             {
-                                maxHeight: "90%",
-                                minHeight: "25%",
-                                borderRadius: "8px 8px 0px 0px"
+                              maxHeight: "90%",
+                              minHeight: "25%",
+                              borderRadius: "15px 15px 0px 0px",
+                              height,
+                              overflow: 'visible'
                             }}}
-                    swipeAreaWidth={50}
+                    swipeAreaWidth={0}
                 >
                     <Puller />
                     {children}
