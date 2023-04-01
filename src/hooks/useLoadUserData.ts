@@ -1,7 +1,7 @@
 import {StorageKey} from "../modules/StorageKey";
 import {setIsDiaryLoading} from "../modules/effector/DiaryStore";
 import {useLoadDiary} from "./useLoadDiary";
-import {setNavbarItems} from "../modules/effector/AppSettingsSrore";
+import {setNavbarItems} from "../modules/effector/AppSettingsStore";
 import {setGrade, setIsTeacher, setTeacher} from "../modules/effector/TimetableStore";
 import {useLoadTimetable} from "./useLoadTimetable";
 

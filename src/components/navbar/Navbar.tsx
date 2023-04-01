@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useLocation} from 'react-router-dom';
 import Icon from "../icon/Icon";
-import {appSettingsStore} from "../../modules/effector/AppSettingsSrore"
+import {appSettingsStore} from "../../modules/effector/AppSettingsStore"
 import {useStore} from "effector-react";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';

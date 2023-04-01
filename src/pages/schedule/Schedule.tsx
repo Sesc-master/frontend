@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from "react";
 import Week from "./week/Week";
 import {format} from "../../modules/schedule/format";
-import {setModalView} from "../../modules/effector/AppSettingsSrore";
+import {setModalView} from "../../modules/effector/AppSettingsStore";
 import {Modal} from "../../modules/Modal";
 import {useStore} from "effector-react";
 import {setDay, timetableStore,} from '../../modules/effector/TimetableStore';

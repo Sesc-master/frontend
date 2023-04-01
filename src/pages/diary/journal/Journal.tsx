@@ -1,7 +1,7 @@
 import React, {useState, useMemo} from "react";
 import Task from "./task/Task";
 import {Modal} from "../../../modules/Modal";
-import {setModalView} from "../../../modules/effector/AppSettingsSrore";
+import {setModalView} from "../../../modules/effector/AppSettingsStore";
 import {diaryStore} from "../../../modules/effector/DiaryStore";
 import {useStore} from "effector-react"
 import styles from "./Journal.module.scss"

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Options from "../../../components/options/Options";
-import {setModalView} from "../../../modules/effector/AppSettingsSrore";
+import {setModalView} from "../../../modules/effector/AppSettingsStore";
 import {setTeacher, setIsTeacher} from "../../../modules/effector/TimetableStore";
 import Loading from "../../../components/loading/Loading";
 import {useLoadTimetable} from "../../../hooks/useLoadTimetable";
