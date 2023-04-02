@@ -8,6 +8,7 @@ export const setIsTeacher = createEvent<boolean>()
 export const setTeacher = createEvent<string>()
 export const setDay = createEvent<number>()
 export const setClasses = createEvent<Array<string>>()
+export const setTeachers = createEvent<Array<string>>()
 
 export type ITimtabelStore = {
     grade: string,
@@ -17,7 +18,8 @@ export type ITimtabelStore = {
     isTeacher: boolean,
     teacher: string,
     day: number
-    classes: Array<string>
+    classes: Array<string>,
+    teachers: Array<string>
 }
 
 export const timetableStore = createStore<ITimtabelStore>({
@@ -33,7 +35,8 @@ export const timetableStore = createStore<ITimtabelStore>({
         "9А", "9Б", "9В", "9Г", "9Е",
         "10А", "10Б", "10В", "10Г", "10Д", "10Е", "10З", "10К", "10Л", "10М", "10Н", "10С",
         "11А", "11Б", "11В", "11Г", "11Д", "11Е", "11З", "11К", "11Л", "11М", "11Н", "11С"
-    ]
+    ],
+    teachers: []
 })
     .on(setGrade, (state, grade) => (
         {...state, grade}
@@ -58,4 +61,7 @@ export const timetableStore = createStore<ITimtabelStore>({
     ))
     .on(setClasses, (state, classes) => (
         {...state, classes}
+    ))
+    .on(setTeachers, (state, teachers) => (
+        {...state, teachers}
     ))
