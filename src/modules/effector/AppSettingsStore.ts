@@ -2,6 +2,7 @@ import {createEvent, createStore} from "effector";
 import {IModal} from "../Modal";
 import {NavbarItem, defaultItems} from "../../components/navbar/NavbarItems";
 import {Page} from "../../components/projectRoot/Page";
+import {StorageKey} from "../StorageKey";
 
 export const setModalView = createEvent<IModal>()
 export const setNavbarItems = createEvent<NavbarItem[]>()
@@ -23,7 +24,7 @@ export const appSettingsStore = createStore<IAppSettingsStore>({
     navbarItems: defaultItems,
     initialPage: Page.About,
     isPWA: false,
-    isFullClassesListModal: false
+    isFullClassesListModal: Boolean(localStorage.getItem(StorageKey.IsFullClassesList))
 })
     .on(setModalView, (state, modalView) => (
         {...state, modalView}
@@ -37,6 +38,7 @@ export const appSettingsStore = createStore<IAppSettingsStore>({
     .on(setIsPWA, (state, isPWA) => (
         {...state, isPWA}
     ))
-    .on(setIsFullClassesListModal, (state, isFullClassesListModal) => (
-        {...state, isFullClassesListModal}
-    ))
+    .on(setIsFullClassesListModal, (state, isFullClassesListModal) => {
+        localStorage.setItem(StorageKey.IsFullClassesList, isFullClassesListModal ? "true" : "");
+        return {...state, isFullClassesListModal}
+    })

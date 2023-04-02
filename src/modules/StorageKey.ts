@@ -3,5 +3,6 @@ export enum StorageKey {
     Scheme = "scheme",
     NavbarItems = "navbarTabs",
     InitialPage = 'page',
-    Timetable = 'timetable'
+    Timetable = 'timetable',
+    IsFullClassesList = "isFullClassesList"
 }
