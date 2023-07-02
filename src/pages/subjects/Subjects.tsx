@@ -1,7 +1,7 @@
 import React from "react";
 import Options from "../../components/options/Options";
 import {setTargetSubject, diaryStore} from "../../modules/effector/DiaryStore";
-import {setModalView} from "../../modules/effector/AppSettingsSrore";
+import {setModalView} from "../../modules/effector/AppSettingsStore";
 import {useStore} from "effector-react";
 
 const Subjects = () => {

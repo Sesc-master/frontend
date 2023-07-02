@@ -7,10 +7,10 @@ import {
     SwipeableDrawer,
     Grid
 } from '@mui/material';
-import {setModalView} from "../../modules/effector/AppSettingsSrore";
+import {setModalView} from "../../modules/effector/AppSettingsStore";
 import {Modal as ModalName} from "../../modules/Modal";
 import {useStore} from "effector-react";
-import {appSettingsStore} from "../../modules/effector/AppSettingsSrore";
+import {appSettingsStore} from "../../modules/effector/AppSettingsStore";
 import Puller from "./Puller";
 
 type IModalPage = {

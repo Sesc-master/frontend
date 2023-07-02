@@ -25,6 +25,8 @@ import '@ionic/core/dist/ionic/index.esm';
 import '@ionic/core/dist/ionic/ionic.js';
 import '@ionic/core/css/ionic.bundle.css';
 import {Grid} from "@mui/material";
+import getNames from "./modules/api/getNames";
+import {setClasses, setTeachers} from "./modules/effector/TimetableStore";
 
 setupIonicReact({
 	mode: 'ios',
@@ -39,6 +41,9 @@ const darkTheme = createTheme({
 });
 
 const App = () => {
+	getNames("group").then(setClasses);
+	getNames("teacher").then(setTeachers);
+
 	useEffect(() => {
 		bridge.send("VKWebAppInit", {});
 	}, []);

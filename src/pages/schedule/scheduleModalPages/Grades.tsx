@@ -1,34 +1,34 @@
 import React, {useState} from "react";
 
 import Options from "../../../components/options/Options"
-import {setModalView} from "../../../modules/effector/AppSettingsSrore";
-import {setGrade, setIsTeacher} from '../../../modules/effector/TimetableStore'
+import {appSettingsStore, setModalView} from "../../../modules/effector/AppSettingsStore";
+import {setGrade, setIsTeacher, timetableStore} from '../../../modules/effector/TimetableStore'
 import {useLoadTimetable} from '../../../hooks/useLoadTimetable'
+import {useStore} from "effector-react";
 
 
 const Grades = () => {
-    const grades = {
-        "8": ["8А", "8В"],
-        "9": ["9А", "9Б", "9В", "9Г", "9Е"],
-        "10": ["10А", "10Б", "10В", "10Г", "10Д", "10Е", "10З", "10К", "10Л", "10М", "10Н", "10С"],
-        "11": ["11А", "11Б", "11В", "11Г", "11Д", "11Е", "11З", "11К", "11Л", "11М", "11Н", "11С"]
-    };
+    const [classNumber, setClassNumber] = useState("");
+    const {classes} = useStore(timetableStore);
+    const {isFullClassesListModal} = useStore(appSettingsStore);
 
-    const [gradeName, setGradeName] = useState("");
+    const classesNumbers = Array.from(new Set(classes.map(className => className.slice(0, -1))));
+
+    const isClassesList = isFullClassesListModal || (classNumber !== ""),
+        selectableClasses = isFullClassesListModal ? classes : classes.filter(className => className.startsWith(classNumber));
 
     return (
         <>
-            {gradeName === "" && <Options options={Object?.keys({...grades})} setOption={
-                (option) => {
-                    setTimeout(() => setGradeName(option), 100)
-                }}/>}
-            {gradeName !== "" && <Options options={Object.assign({...grades}[gradeName] ?? {}, [])} setOption={
+            {isClassesList ? <Options options={selectableClasses} setOption={
                 (grade) => {
-                    setGrade(grade)
-                    setModalView('')
-                    setIsTeacher(false)
-                    useLoadTimetable(grade, "", false)
-                }}/>}
+                    setGrade(grade);
+                    setModalView("");
+                    setIsTeacher(false);
+                    useLoadTimetable(grade, "", false)}}/>
+                : <Options options={classesNumbers} setOption={
+                    (option) => setTimeout(() => setClassNumber(option), 100)
+                }/>
+            }
         </>
     );
 }
